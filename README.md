@@ -5,6 +5,7 @@ A Free, Custom VPN. Managed by Spectre-SX
 
 - [Privacy Policy](./PrivacyPolicy.md)  
 - [Terms of Service](./TermsOfService.md)
+- [License](./LICENSE)
 
 ## Purpose 🛡️
 
