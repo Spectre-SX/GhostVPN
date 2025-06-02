@@ -16,9 +16,9 @@ GhostVPN aims to offer a simple, scalable VPN solution that:
 
 ---
 
-## 📦 Recommended Server Specs
+## 📦 Server Resources
 
-| Resource      | Recommended Value     | Notes                                                 |
+| Resource      | Value                  | Notes                                                 |
 |---------------|------------------------|--------------------------------------------------------|
 | **RAM**       | 12 GB                  | Easily supports 500+ clients (1–10MB RAM per user)     |
 | **vCPUs**     | 2 OCPUs                | Handles encryption/decryption for 100–200 active users |
