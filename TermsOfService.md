@@ -4,6 +4,12 @@ Last updated: [2.06.2025]
 
 Welcome to GhostVPN! By using our VPN service, you agree to the following terms and conditions.
 
+## Terms
+
+"GhostVPN" refers to the creator, or owner.
+"You" refers to user, or participator,
+"We" Refers to owners or developers.
+
 ## 1. Use of Service
 
 GhostVPN provides a secure VPN connection for private use. You agree to use the service responsibly and legally.
