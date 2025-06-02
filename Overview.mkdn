@@ -99,6 +99,8 @@ GhostVPN supports all platforms with native WireGuard apps:
 - Europe (Amsterdam, Netherlands)
 - North America (Ashburn, Virginia, America)
 
+---
+
 ## 🔚 Summary
 
 GhostVPN is a modern, efficient VPN solution for individuals, devs, and small teams who want speed, privacy, and control. It's optimized for self-hosting on low-cost VPS instances and scales comfortably to support dozens or even hundreds of users — depending on usage.
