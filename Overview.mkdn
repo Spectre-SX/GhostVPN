@@ -28,7 +28,7 @@ GhostVPN aims to offer a simple, scalable VPN solution that:
 
 ---
 
-## 📊 Bandwidth Estimation
+## 📊 Bandwidth Estimation (PER SERVER)
 
 | Usage Type               | Per User / Month | Max Users on 5TB Cap |
 |--------------------------|------------------|-----------------------|
