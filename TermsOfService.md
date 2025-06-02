@@ -6,9 +6,9 @@ Welcome to GhostVPN! By using our VPN service, you agree to the following terms 
 
 ## Terms
 
-"GhostVPN" refers to the creator, or owner.
-"You" refers to user, or participator,
-"We" Refers to owners or developers.
+- "GhostVPN" refers to the creator, or owner.
+- "You" refers to user, or participator,
+- "We" Refers to owners or developers.
 
 ## 1. Use of Service
 
