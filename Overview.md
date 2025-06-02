@@ -55,7 +55,7 @@ GhostVPN uses WireGuard for its core tunnel layer:
 ## ✅ Features
 
 - Fast, low-latency VPN with minimal CPU/memory usage  
-- Key-based client auth (no usernames/passwords)  
+- Firewall to protect user data and connections
 - Fully self-hosted — no 3rd party control  
 - Works on **Windows**, **macOS**, **Linux**, **Android**, **iOS**, and **routers**  
 - Easy `.conf` or QR code config  
