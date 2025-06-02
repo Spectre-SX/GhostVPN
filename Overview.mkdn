@@ -22,7 +22,7 @@ GhostVPN aims to offer a simple, scalable VPN solution that:
 |---------------|------------------------|--------------------------------------------------------|
 | **RAM**       | 12 GB                  | Easily supports 500+ clients (1–10MB RAM per user)     |
 | **vCPUs**     | 2 OCPUs                | Handles encryption/decryption for 100–200 active users |
-| **Storage**   | 100 GB                 | Plenty                                                 |
+| **Storage**   | 100 GB                 | Enough for storing repo files.                         |
 | **Bandwidth** | 5 TB / month           | Primary usage limiter; scales based on client usage    |
 | **OS**        | Ubuntu 22.04 (or newer) | Lean and WireGuard-friendly                            |
 
