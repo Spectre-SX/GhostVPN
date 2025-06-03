@@ -1,7 +1,7 @@
 # GhostVPN 👻
 A Free, Custom VPN. Managed by Spectre-SX
 
-![GhostVPN Logo](./assets/images/GhostVPNLogo.png)
+![GhostVPN Logo](./assets/media/GhostVPNLogo.png)
 
 
 ## Legal
