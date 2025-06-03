@@ -19,3 +19,11 @@ We are developing this project to ensure privacy to many many people. We have ex
 - Digital Tunneling - We tunnel your network requests through our servers, and they will only get our ip, not yours.
 - Country Swapping - Want to watch something unavailable in your country? Just swap to another!
 - Full overiew [Here](./Overview.md).
+
+## 🛠 Setup Instructions
+
+Coming soon in the [`docs/`](./docs/) folder!
+
+## 💬 Contact
+
+For help, questions, or feedback, open an issue or contact @spectre.cmd on discord.
