@@ -17,14 +17,6 @@ import { FaGithub, FaDiscord, FaLinkedin, FaGlobe } from "react-icons/fa";
 
 import "./App.css";
 
-function SideLink({ icon, label, href }) {
-  return (
-    <a href={href} target="_blank" rel="noopener noreferrer">
-      {icon} {label}
-    </a>
-  );
-}
-
 function Home() {
   const [newsItems, setNewsItems] = useState([]);
   const [loadingNews, setLoadingNews] = useState(true);
@@ -49,9 +41,8 @@ function Home() {
         const res = await fetch(proxyUrl + feedUrl);
         if (!res.ok) throw new Error("Network response was not ok");
         const { contents } = await res.json();
-        const base64 = contents.split("base64,")[1];
-        const decoded = atob(base64);
-        const xml = new DOMParser().parseFromString(decoded, "text/xml");
+
+        const xml = new DOMParser().parseFromString(contents, "text/xml");
 
         const items = Array.from(xml.querySelectorAll("item"))
           .slice(0, 5)
@@ -75,8 +66,12 @@ function Home() {
 
   return (
     <>
-      <Iridescence color={[0.2, 0.1, 0.2]} mouseReact={false} amplitude={0.1} speed={1.0} />
-
+      <Iridescence
+        color={[0.2, 0.1, 0.2]}
+        mouseReact={false}
+        amplitude={0.1}
+        speed={1.0}
+      />
       {/* Social Side Links */}
       <div className="side-buttons left">
         <SideLink icon={<FaGithub />} label="GitHub" href="https://github.com/yourname" />
@@ -103,97 +98,103 @@ function Home() {
         )}
       </div>
 
-      {/* Main Layout */}
-      <div className="app-container">
-        <SplitText
-          text="GhostVPN"
-          className="hero-text"
-          delay={100}
-          duration={0.6}
-          ease="power3.out"
-          splitType="chars"
-          from={{ opacity: 0, y: 40 }}
-          to={{ opacity: 1, y: 0 }}
-          threshold={0.1}
-          rootMargin="-100px"
-          textAlign="center"
-          onLetterAnimationComplete={handleClick("Hero animation done!")}
-        />
+      {/* Main Content */}
+      <SplitText
+        text="GhostVPN"
+        className="hero-text"
+        delay={100}
+        duration={0.6}
+        ease="power3.out"
+        splitType="chars"
+        from={{ opacity: 0, y: 40 }}
+        to={{ opacity: 1, y: 0 }}
+        threshold={0.1}
+        rootMargin="-100px"
+        textAlign="center"
+        onLetterAnimationComplete={handleClick("Hero animation done!")}
+      />
 
-        <BlurText
-          text="Your privacy comes before ours."
-          delay={150}
-          animateBy="words"
-          direction="top"
-          className="blur-text"
-          onAnimationComplete={handleClick("Blur animation done!")}
-        />
+      <BlurText
+        text="Your privacy comes before ours."
+        delay={150}
+        animateBy="words"
+        direction="top"
+        className="blur-text"
+        onAnimationComplete={handleClick("Blur animation done!")}
+      />
 
-        <ScrollReveal
-          className="scroll-reveal-text"
-          baseOpacity={1}
-          enableBlur={false}
-          baseRotation={0}
-          blurStrength={0}
-          onRevealComplete={handleClick("Scroll reveal done!")}
+      <ScrollReveal
+        className="scroll-reveal-text"
+        baseOpacity={1}
+        enableBlur={false}
+        baseRotation={0}
+        blurStrength={0}
+        onRevealComplete={handleClick("Scroll reveal done!")}
+      >
+        Why do we do this? Great question! Our developers have seen what a mass data breach can
+        do, so we respect your privacy.
+      </ScrollReveal>
+
+      <div className="scramble-spotlight-wrapper">
+        <ScrambledText
+          className="scramble-text"
+          radius={100}
+          duration={1.2}
+          speed={0.5}
+          scrambleChars=".:"
+          onAnimationComplete={handleClick("Scramble animation done!")}
         >
-          Why do we do this? Great question! Our developers have seen what a mass data breach can
-          do, so we respect your privacy.
-        </ScrollReveal>
+          Your IP is always hidden to hackers, scammers or anyone else who has access to your
+          connected network.
+        </ScrambledText>
 
-        <div className="scramble-spotlight-wrapper">
-          <ScrambledText
-            className="scramble-text"
-            radius={100}
-            duration={1.2}
-            speed={0.5}
-            scrambleChars=".:" 
-            onAnimationComplete={handleClick("Scramble animation done!")}
-          >
-            Your IP is always hidden to hackers, scammers or anyone else who has access to your
-            connected network.
-          </ScrambledText>
+        <SpotlightCard className="spotlight-card" spotlightColor="rgba(255,255,255,0.15)">
+          <div className="spotlight-content">
+            <h3>Military Grade Protection 🛡️</h3>
+            <p>Keeping your data safe and secure with top‑tier encryption.</p>
+          </div>
+        </SpotlightCard>
+      </div>
 
-          <SpotlightCard className="spotlight-card" spotlightColor="rgba(255,255,255,0.15)">
-            <div className="spotlight-content">
-              <h3>Military Grade Protection 🛡️</h3>
-              <p>Keeping your data safe and secure with top‑tier encryption.</p>
-            </div>
-          </SpotlightCard>
-        </div>
+      <div className="profile-cards-wrapper">
+        <ProfileCard
+          name="Spectre-SX"
+          title="Owner"
+          handle="spectresx"
+          status="Online"
+          contactText="Contact Me"
+          avatarUrl="https://cdn.discordapp.com/attachments/1251949633437958276/1381245587076419654/avatar.jpg"
+          showUserInfo={true}
+          enableTilt={true}
+          onContactClick={() => console.log("Contact clicked")}
+        />
 
-        <div className="profile-cards-wrapper">
-          <ProfileCard
-            name="Spectre-SX"
-            title="Owner"
-            handle="spectresx"
-            status="Online"
-            contactText="Contact Me"
-            avatarUrl="https://cdn.discordapp.com/attachments/1251949633437958276/1381245587076419654/avatar.jpg"
-            showUserInfo={true}
-            enableTilt={true}
-            onContactClick={() => console.log("Contact clicked")}
-          />
+        <ProfileCard
+          name="Enes"
+          title="Co-Owner"
+          handle="00enes"
+          status="Online"
+          contactText="Contact Me"
+          avatarUrl="https://cdn.discordapp.com/attachments/1251949633437958276/1381246661602312326/Schermafbeelding_2025-06-08_141918-removebg-preview.png"
+          showUserInfo={true}
+          enableTilt={true}
+          onContactClick={() => console.log("Contact clicked")}
+        />
+      </div>
 
-          <ProfileCard
-            name="Enes"
-            title="Co-Owner"
-            handle="00enes"
-            status="Online"
-            contactText="Contact Me"
-            avatarUrl="https://cdn.discordapp.com/attachments/1251949633437958276/1381246661602312326/Schermafbeelding_2025-06-08_141918-removebg-preview.png"
-            showUserInfo={true}
-            enableTilt={true}
-            onContactClick={() => console.log("Contact clicked")}
-          />
-        </div>
-
-        {/* Dock */}
-        <div className="dock">
-          <Dock items={dockItems} panelHeight={68} baseItemSize={50} magnification={70} />
-        </div>
+      {/* Dock */}
+      <div className="dock">
+        <Dock items={dockItems} panelHeight={68} baseItemSize={50} magnification={70} />
       </div>
     </>
+  );
+}
+
+function SideLink({ icon, label, href }) {
+  return (
+    <a href={href} target="_blank" rel="noopener noreferrer" className="side-link">
+      {icon} {label}
+    </a>
   );
 }
 
@@ -201,17 +202,10 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Redirect root to /home once */}
-        <Route path="/" element={<Navigate to="/home" replace />} />
-
-        {/* Home route with everything inside */}
         <Route path="/home" element={<Home />} />
-
-        {/* 404 route */}
         <Route path="/404" element={<NotFound />} />
-
-        {/* Catch all unmatched routes render NotFound directly */}
-        <Route path="*" element={<NotFound />} />
+        <Route path="/" element={<Navigate to="/home" replace />} />
+        <Route path="*" element={<Navigate to="/404" replace />} />
       </Routes>
     </BrowserRouter>
   );
