@@ -7,7 +7,7 @@ import ScrambledText from "./blocks/TextAnimations/ScrambledText/ScrambledText.j
 import ScrollReveal from "./blocks/TextAnimations/ScrollReveal/ScrollReveal.jsx";
 import Dock from "./blocks/Components/Dock/Dock.jsx";
 import SpotlightCard from "./blocks/Components/SpotlightCard/SpotlightCard.jsx";
-import ProfileCard from "./blocks/Components/ProfileCard/ProfileCard.jsx";
+import ProfileCard from "./blocks/components/ProfileCard/ProfileCard.jsx";
 import Iridescence from "./blocks/Backgrounds/Iridescence/Iridescence.jsx";
 
 import NotFound from "./404/404.jsx";
@@ -16,6 +16,18 @@ import { VscHome, VscArchive, VscAccount, VscSettingsGear } from "react-icons/vs
 import { FaGithub, FaDiscord, FaLinkedin, FaGlobe } from "react-icons/fa";
 
 import "./App.css";
+
+// Simple Layout wrapper to add iridescent background to all pages
+function Layout({ children }) {
+  return (
+    <>
+      <div className="iridescence-wrapper">
+        <Iridescence color={[0.2, 0.1, 0.2]} mouseReact={false} amplitude={0.1} speed={1.0} />
+      </div>
+      <div className="page-content">{children}</div>
+    </>
+  );
+}
 
 function Home() {
   const [newsItems, setNewsItems] = useState([]);
@@ -67,10 +79,6 @@ function Home() {
 
   return (
     <>
-      <div className="iridescence-wrapper">
-        <Iridescence color={[0.2, 0.1, 0.2]} mouseReact={false} amplitude={0.1} speed={1.0} />
-      </div>
-
       {/* Social Side Links */}
       <div className="side-buttons left">
         <SideLink icon={<FaGithub />} label="GitHub" href="https://github.com/yourname" />
@@ -203,8 +211,10 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/home" element={<Home />} />
-        <Route path="/404" element={<NotFound />} />
+        {/* Wrap Home in Layout */}
+        <Route path="/home" element={<Layout><Home /></Layout>} />
+        {/* Wrap NotFound in Layout */}
+        <Route path="/404" element={<Layout><NotFound /></Layout>} />
         {/* Redirect root to /home */}
         <Route path="/" element={<Navigate to="/home" replace />} />
         {/* Redirect all unmatched routes to /404 */}
