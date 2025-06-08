@@ -78,7 +78,13 @@ function Home() {
   }, []);
 
   return (
-    <>
+    </
+      <Iridescence
+        color={[0.2, 0.1, 0.2]}
+        mouseReact={false}
+        amplitude={0.1}
+        speed={1.0}
+      />
       {/* Social Side Links */}
       <div className="side-buttons left">
         <SideLink icon={<FaGithub />} label="GitHub" href="https://github.com/yourname" />
