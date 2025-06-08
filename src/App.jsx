@@ -1,17 +1,18 @@
+import { useEffect, useState } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
 import SplitText from "./blocks/TextAnimations/SplitText/SplitText.jsx";
 import BlurText from "./blocks/TextAnimations/BlurText/BlurText.jsx";
 import ScrambledText from "./blocks/TextAnimations/ScrambledText/ScrambledText.jsx";
 import ScrollReveal from "./blocks/TextAnimations/ScrollReveal/ScrollReveal.jsx";
 import Dock from "./blocks/Components/Dock/Dock.jsx";
 import SpotlightCard from "./blocks/Components/SpotlightCard/SpotlightCard.jsx";
-import ProfileCard from './blocks/Components/ProfileCard/ProfileCard.jsx';
+import ProfileCard from './blocks/components/ProfileCard/ProfileCard.jsx';
 import Iridescence from "./blocks/Backgrounds/Iridescence/Iridescence.jsx";
 import { VscHome, VscArchive, VscAccount, VscSettingsGear } from "react-icons/vsc";
 import { FaGithub, FaDiscord, FaLinkedin, FaGlobe } from "react-icons/fa";
-import { useEffect, useState } from "react";
 import "./App.css";
 
-export default function App() {
+function Home() {
   const [newsItems, setNewsItems] = useState([]);
   const [loadingNews, setLoadingNews] = useState(true);
   const [errorNews, setErrorNews] = useState(null);
@@ -26,18 +27,15 @@ export default function App() {
   ];
 
   useEffect(() => {
-    const proxyUrl = "https://api.allorigins.win/get?url=";
-    const feedUrl = encodeURIComponent("https://techcrunch.com/feed/");
+    const proxyUrl = "https://api.allorigins.win/raw?url=";
+    const feedUrl = "https://techcrunch.com/feed/";
 
     async function fetchNews() {
       setLoadingNews(true);
       try {
-        const res = await fetch(proxyUrl + feedUrl);
-        if (!res.ok) throw new Error("Network response was not ok");
-        const { contents } = await res.json();
-        const base64 = contents.split("base64,")[1];
-        const decoded = atob(base64);
-        const xml = new DOMParser().parseFromString(decoded, "text/xml");
+        const res = await fetch(proxyUrl + encodeURIComponent(feedUrl));
+        const xmlText = await res.text();
+        const xml = new DOMParser().parseFromString(xmlText, "text/xml");
 
         const items = Array.from(xml.querySelectorAll("item")).slice(0, 5).map((item) => ({
           title: item.querySelector("title")?.textContent ?? "",
@@ -59,27 +57,21 @@ export default function App() {
 
   return (
     <>
-		
       <div className="iridescence-wrapper">
-		<Iridescence
-		  color={[0.2, 0.1, 0.2]}
-		  mouseReact={false}
-		  amplitude={0.1}
-		  speed={1.0}
-		/>
-	  </div>
+        <Iridescence color={[0.2, 0.1, 0.2]} mouseReact={false} amplitude={0.1} speed={1.0} />
+      </div>
 
-      {/* Social Side Links */}
+      {/* Side Social Links */}
       <div className="side-buttons left">
-        <SideLink icon={<FaGithub />} label="GitHub" href="https://github.com/Spectre-SX/GhostVPN/" />
-        <SideLink icon={<FaGlobe />} label="Portfolio" href="https://spectre-sx.github.io/Spectral/index.html" />
+        <SideLink icon={<FaGithub />} label="GitHub" href="https://github.com/yourname" />
+        <SideLink icon={<FaGlobe />} label="Portfolio" href="https://yourportfolio.com" />
       </div>
       <div className="side-buttons right">
-        <SideLink icon={<FaDiscord />} label="Discord" href="https://discord.gg/J95kGYBRyh" />
-        <SideLink icon={<FaLinkedin />} label="Other" href="https://example.com" />
+        <SideLink icon={<FaDiscord />} label="Discord" href="https://discord.gg/yourserver" />
+        <SideLink icon={<FaLinkedin />} label="LinkedIn" href="https://linkedin.com/in/yourname" />
       </div>
 
-      {/* Daily News */}
+      {/* News Feed */}
       <div className="daily-news-box">
         <h2>📰 Daily Tech News 🖥️</h2>
         {loadingNews && <p>Loading...</p>}
@@ -95,7 +87,7 @@ export default function App() {
         )}
       </div>
 
-      {/* Main Layout */}
+      {/* Main */}
       <div className="app-container">
         <SplitText
           text="GhostVPN"
@@ -142,8 +134,8 @@ export default function App() {
             scrambleChars=".:"
             onAnimationComplete={handleClick("Scramble animation done!")}
           >
-            Your IP is always hidden to hackers, scammers or anyone else who has access to your
-            connected network.
+            Your IP is always hidden from hackers, scammers, or anyone else who has access to your
+            network.
           </ScrambledText>
 
           <SpotlightCard className="spotlight-card" spotlightColor="rgba(255,255,255,0.15)">
@@ -151,35 +143,35 @@ export default function App() {
               <h3>Military Grade Protection 🛡️</h3>
               <p>Keeping your data safe and secure with top‑tier encryption.</p>
             </div>
-          </SpotlightCard>-
+          </SpotlightCard>
         </div>
-		<div className="profile-cards-wrapper">
-		 <ProfileCard
-			name="Spectre-SX"
-			title="Owner"
-			handle="spectresx"
-			status="Online"
-			contactText="Contact Me"
-			avatarUrl="https://cdn.discordapp.com/attachments/1251949633437958276/1381245587076419654/avatar.jpg?ex=6846d0b2&is=68457f32&hm=8f480be050c67538b08b89e57d7a8bc533b1abfc3be1b76fbc53ab436d04b5ef&"
-			showUserInfo={true}
-			enableTilt={true}
-			onContactClick={() => console.log('Contact clicked')}
-		 />
-		 
-		  <ProfileCard
-			name="Enes"
-			title="Co-Owner"
-			handle="00enes"
-			status="Online"
-			contactText="Contact Me"
-			avatarUrl="https://cdn.discordapp.com/attachments/1251949633437958276/1381246661602312326/Schermafbeelding_2025-06-08_141918-removebg-preview.png?ex=6846d1b2&is=68458032&hm=8bb3a0a98547784681228008c5787409c9f008740941ffaeedda9300d5211752&"
-			showUserInfo={true}
-			enableTilt={true}
-			onContactClick={() => console.log('Contact clicked')}
-		 />
-		</div>
 
-        {/* Dock */}
+        <div className="profile-cards-wrapper">
+          <ProfileCard
+            name="Spectre-SX"
+            title="Owner"
+            handle="spectresx"
+            status="Online"
+            contactText="Contact Me"
+            avatarUrl="https://cdn.discordapp.com/attachments/1251949633437958276/1381245587076419654/avatar.jpg"
+            showUserInfo={true}
+            enableTilt={true}
+            onContactClick={() => console.log("Contact clicked")}
+          />
+
+          <ProfileCard
+            name="Enes"
+            title="Co-Owner"
+            handle="00enes"
+            status="Online"
+            contactText="Contact Me"
+            avatarUrl="https://cdn.discordapp.com/attachments/1251949633437958276/1381246661602312326/Schermafbeelding_2025-06-08_141918-removebg-preview.png"
+            showUserInfo={true}
+            enableTilt={true}
+            onContactClick={() => console.log("Contact clicked")}
+          />
+        </div>
+
         <div className="dock">
           <Dock items={dockItems} panelHeight={68} baseItemSize={50} magnification={70} />
         </div>
@@ -193,5 +185,14 @@ function SideLink({ icon, label, href }) {
     <a href={href} target="_blank" rel="noopener noreferrer">
       {icon} {label}
     </a>
+  );
+}
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Navigate to="/home" />} />
+      <Route path="/home" element={<Home />} />
+    </Routes>
   );
 }
