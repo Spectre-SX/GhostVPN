@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Home from './Home.jsx';   
-import NotFound from './NotFound.jsx'; 
+import NotFound from './404/404.jsx'; 
 
 export default function App() {
   return (
