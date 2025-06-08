@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import SplitText from "./blocks/TextAnimations/SplitText/SplitText.jsx";
 import BlurText from "./blocks/TextAnimations/BlurText/BlurText.jsx";
 import ScrambledText from "./blocks/TextAnimations/ScrambledText/ScrambledText.jsx";
@@ -11,8 +10,6 @@ import Iridescence from "./blocks/Backgrounds/Iridescence/Iridescence.jsx";
 
 import { VscHome, VscArchive, VscAccount, VscSettingsGear } from "react-icons/vsc";
 import { FaGithub, FaDiscord, FaLinkedin, FaGlobe } from "react-icons/fa";
-
-import "./App.css"; // Your styles for Home
 
 function SideLink({ icon, label, href }) {
   return (
@@ -70,10 +67,23 @@ export default function Home() {
   }, []);
 
   return (
-    <>
-      <Iridescence color={[0.2, 0.1, 0.2]} mouseReact={false} amplitude={0.1} speed={1.0} />
+    <div className="app-container" style={{ position: "relative", minHeight: "100vh", overflowX: "hidden" }}>
+      <Iridescence
+        color={[0.2, 0.1, 0.2]}
+        mouseReact={false}
+        amplitude={0.1}
+        speed={1.0}
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100vw",
+          height: "100vh",
+          zIndex: -1,
+        }}
+      />
 
-      {/* Social Side Buttons */}
+      {/* Social Side Links */}
       <div className="side-buttons left">
         <SideLink icon={<FaGithub />} label="GitHub" href="https://github.com/yourname" />
         <SideLink icon={<FaGlobe />} label="Portfolio" href="https://yourportfolio.com" />
@@ -187,6 +197,6 @@ export default function Home() {
       <div className="dock">
         <Dock items={dockItems} panelHeight={68} baseItemSize={50} magnification={70} />
       </div>
-    </>
+    </div>
   );
 }
