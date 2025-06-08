@@ -1,10 +1,10 @@
-import SplitText from "src/blocks/TextAnimations/SplitText/SplitText.jsx";
+import SplitText from "./blocks/TextAnimations/SplitText/SplitText.jsx";
 import BlurText from "src/blocks/TextAnimations/BlurText/BlurText.jsx";
 import ScrambledText from "src/blocks/TextAnimations/ScrambledText/ScrambledText.jsx";
 import ScrollReveal from "src/blocks/TextAnimations/ScrollReveal/ScrollReveal.jsx";
-import Dock from "src/blocks/Components/Dock/Dock.jsx";
-import SpotlightCard from "src/blocks/Components/SpotlightCard/SpotlightCard.jsx";
-import ProfileCard from 'src/blocks/components/ProfileCard/ProfileCard.jsx';
+import Dock from "./blocks/Components/Dock/Dock.jsx";
+import SpotlightCard from "./blocks/Components/SpotlightCard/SpotlightCard.jsx";
+import ProfileCard from './blocks/components/ProfileCard/ProfileCard.jsx';
 import Iridescence from "src/blocks/Backgrounds/Iridescence/Iridescence.jsx";
 import { VscHome, VscArchive, VscAccount, VscSettingsGear } from "react-icons/vsc";
 import { FaGithub, FaDiscord, FaLinkedin, FaGlobe } from "react-icons/fa";
