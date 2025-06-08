@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "./Home.jsx";
-import NotFound from "./404.jsx"; // your 404 page component file
+import NotFound from "./404/404.jsx"; // your 404 page component file
 
 export default function App() {
   return (
