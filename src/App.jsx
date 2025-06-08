@@ -7,7 +7,7 @@ import ScrambledText from "./blocks/TextAnimations/ScrambledText/ScrambledText.j
 import ScrollReveal from "./blocks/TextAnimations/ScrollReveal/ScrollReveal.jsx";
 import Dock from "./blocks/Components/Dock/Dock.jsx";
 import SpotlightCard from "./blocks/Components/SpotlightCard/SpotlightCard.jsx";
-import ProfileCard from "./blocks/components/ProfileCard/ProfileCard.jsx";
+import ProfileCard from "./blocks/Components/ProfileCard/ProfileCard.jsx";
 import Iridescence from "./blocks/Backgrounds/Iridescence/Iridescence.jsx";
 
 import NotFound from "./404/404.jsx";
