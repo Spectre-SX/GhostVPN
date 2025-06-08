@@ -208,11 +208,16 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/home" element={<Home />} />
+        <Route path="/home" element={<Layout><Home /></Layout>} />
         <Route path="/404" element={<Layout><NotFound /></Layout>} />
         <Route path="/" element={<Navigate to="/home" replace />} />
-        <Route path="*" element={<Navigate to="/404" replace />} />
-      </Routes>
+        {/* Replace this: */}
+        {/* <Route path="*" element={<Navigate to="/404" replace />} /> */}
+        
+        {/* WITH THIS: */}
+        <Route path="*" element={<Layout><NotFound /></Layout>} />
+    </Routes>
+
     </BrowserRouter>
   );
 }
