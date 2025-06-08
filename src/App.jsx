@@ -10,8 +10,6 @@ export default function App() {
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/404" element={<NotFound />} />
-        <Route path="/" element={<Navigate to="/home" replace />} />
-        <Route path="*" element={<Navigate to="/404" replace />} />
       </Routes>
     </BrowserRouter>
   );
