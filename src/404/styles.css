@@ -1,0 +1,59 @@
+/* Reset and base */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #000000; /* Full black background */
+  overflow: hidden; /* Prevent scrolling */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #0ff; /* Neon cyan text by default */
+}
+
+/* Center container styling */
+.app-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  user-select: none;
+  z-index: 1;
+  position: relative;
+}
+
+/* Help button styling */
+.help-button {
+  background-color: #0ff;
+  border: none;
+  border-radius: 8px;
+  color: #000;
+  font-weight: bold;
+  padding: 0.5rem 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 0 10px #0ff;
+  transition: background-color 0.3s;
+}
+
+.help-button:hover {
+  background-color: #00d8d8;
+}
+
+
+
+/* Glitch text styling — bigger and bold */
+.glitch-text {
+  font-size: 10rem !important;
+  font-weight: 900;
+}
+
+/* Fuzzy text styling — smaller and subtle */
+.fuzzy-text {
+  font-size: 20rem;
+  color: #aaa;
+}
+
+
