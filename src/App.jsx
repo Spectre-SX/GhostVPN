@@ -71,12 +71,12 @@ export default function App() {
 
       {/* Social Side Links */}
       <div className="side-buttons left">
-        <SideLink icon={<FaGithub />} label="GitHub" href="https://github.com/yourname" />
-        <SideLink icon={<FaGlobe />} label="Portfolio" href="https://yourportfolio.com" />
+        <SideLink icon={<FaGithub />} label="GitHub" href="https://github.com/Spectre-SX/GhostVPN/" />
+        <SideLink icon={<FaGlobe />} label="Portfolio" href="https://spectre-sx.github.io/Spectral/index.html" />
       </div>
       <div className="side-buttons right">
-        <SideLink icon={<FaDiscord />} label="Discord" href="https://discord.gg/yourserver" />
-        <SideLink icon={<FaLinkedin />} label="LinkedIn" href="https://linkedin.com/in/yourname" />
+        <SideLink icon={<FaDiscord />} label="Discord" href="https://discord.gg/J95kGYBRyh" />
+        <SideLink icon={<FaLinkedin />} label="Other" href="https://example.com" />
       </div>
 
       {/* Daily News */}
