@@ -7,6 +7,7 @@ import Dock from "./blocks/Components/Dock/Dock.jsx";
 import SpotlightCard from "./blocks/Components/SpotlightCard/SpotlightCard.jsx";
 import ProfileCard from "./blocks/Components/ProfileCard/ProfileCard.jsx";
 import Iridescence from "./blocks/Backgrounds/Iridescence/Iridescence.jsx";
+import css from "./App.css"
 
 import { VscHome, VscArchive, VscAccount, VscSettingsGear } from "react-icons/vsc";
 import { FaGithub, FaDiscord, FaLinkedin, FaGlobe } from "react-icons/fa";
