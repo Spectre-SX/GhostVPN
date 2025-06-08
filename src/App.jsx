@@ -17,18 +17,6 @@ import { FaGithub, FaDiscord, FaLinkedin, FaGlobe } from "react-icons/fa";
 
 import "./App.css";
 
-// Simple Layout wrapper to add iridescent background to all pages
-function Layout({ children }) {
-  return (
-    <>
-      <div className="iridescence-wrapper">
-        <Iridescence color={[0.2, 0.1, 0.2]} mouseReact={false} amplitude={0.1} speed={1.0} />
-      </div>
-      <div className="page-content">{children}</div>
-    </>
-  );
-}
-
 function Home() {
   const [newsItems, setNewsItems] = useState([]);
   const [loadingNews, setLoadingNews] = useState(true);
@@ -52,10 +40,9 @@ function Home() {
       try {
         const res = await fetch(proxyUrl + feedUrl);
         if (!res.ok) throw new Error("Network response was not ok");
-        const { contents } = await res.json();
-        const base64 = contents.split("base64,")[1];
-        const decoded = atob(base64);
-        const xml = new DOMParser().parseFromString(decoded, "text/xml");
+        const data = await res.json();
+        const parser = new DOMParser();
+        const xml = parser.parseFromString(data.contents, "text/xml");
 
         const items = Array.from(xml.querySelectorAll("item"))
           .slice(0, 5)
@@ -78,13 +65,12 @@ function Home() {
   }, []);
 
   return (
-    </
-      <Iridescence
-        color={[0.2, 0.1, 0.2]}
-        mouseReact={false}
-        amplitude={0.1}
-        speed={1.0}
-      />
+    <>
+      {/* Iridescent Background ONLY on Home */}
+      <div className="iridescence-wrapper">
+        <Iridescence color={[0.2, 0.1, 0.2]} mouseReact={false} amplitude={0.1} speed={1.0} />
+      </div>
+
       {/* Social Side Links */}
       <div className="side-buttons left">
         <SideLink icon={<FaGithub />} label="GitHub" href="https://github.com/yourname" />
@@ -111,7 +97,7 @@ function Home() {
         )}
       </div>
 
-      {/* Main Layout */}
+      {/* Main Content */}
       <div className="app-container">
         <SplitText
           text="GhostVPN"
@@ -195,11 +181,11 @@ function Home() {
             onContactClick={() => console.log("Contact clicked")}
           />
         </div>
+      </div>
 
-        {/* Dock */}
-        <div className="dock">
-          <Dock items={dockItems} panelHeight={68} baseItemSize={50} magnification={70} />
-        </div>
+      {/* Dock */}
+      <div className="dock">
+        <Dock items={dockItems} panelHeight={68} baseItemSize={50} magnification={70} />
       </div>
     </>
   );
@@ -213,17 +199,18 @@ function SideLink({ icon, label, href }) {
   );
 }
 
+function Layout({ children }) {
+  // Simple wrapper without background, just content container for other pages
+  return <div className="page-content">{children}</div>;
+}
+
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Wrap Home in Layout */}
-        <Route path="/home" element={<Layout><Home /></Layout>} />
-        {/* Wrap NotFound in Layout */}
+        <Route path="/home" element={<Home />} />
         <Route path="/404" element={<Layout><NotFound /></Layout>} />
-        {/* Redirect root to /home */}
         <Route path="/" element={<Navigate to="/home" replace />} />
-        {/* Redirect all unmatched routes to /404 */}
         <Route path="*" element={<Navigate to="/404" replace />} />
       </Routes>
     </BrowserRouter>
