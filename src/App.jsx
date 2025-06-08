@@ -17,6 +17,14 @@ import { FaGithub, FaDiscord, FaLinkedin, FaGlobe } from "react-icons/fa";
 
 import "./App.css";
 
+function SideLink({ icon, label, href }) {
+  return (
+    <a href={href} target="_blank" rel="noopener noreferrer">
+      {icon} {label}
+    </a>
+  );
+}
+
 function Home() {
   const [newsItems, setNewsItems] = useState([]);
   const [loadingNews, setLoadingNews] = useState(true);
@@ -40,9 +48,10 @@ function Home() {
       try {
         const res = await fetch(proxyUrl + feedUrl);
         if (!res.ok) throw new Error("Network response was not ok");
-        const data = await res.json();
-        const parser = new DOMParser();
-        const xml = parser.parseFromString(data.contents, "text/xml");
+        const { contents } = await res.json();
+        const base64 = contents.split("base64,")[1];
+        const decoded = atob(base64);
+        const xml = new DOMParser().parseFromString(decoded, "text/xml");
 
         const items = Array.from(xml.querySelectorAll("item"))
           .slice(0, 5)
@@ -66,10 +75,7 @@ function Home() {
 
   return (
     <>
-      {/* Iridescent Background ONLY on Home */}
-      <div className="iridescence-wrapper">
-        <Iridescence color={[0.2, 0.1, 0.2]} mouseReact={false} amplitude={0.1} speed={1.0} />
-      </div>
+      <Iridescence color={[0.2, 0.1, 0.2]} mouseReact={false} amplitude={0.1} speed={1.0} />
 
       {/* Social Side Links */}
       <div className="side-buttons left">
@@ -97,7 +103,7 @@ function Home() {
         )}
       </div>
 
-      {/* Main Content */}
+      {/* Main Layout */}
       <div className="app-container">
         <SplitText
           text="GhostVPN"
@@ -141,7 +147,7 @@ function Home() {
             radius={100}
             duration={1.2}
             speed={0.5}
-            scrambleChars=".:"
+            scrambleChars=".:" 
             onAnimationComplete={handleClick("Scramble animation done!")}
           >
             Your IP is always hidden to hackers, scammers or anyone else who has access to your
@@ -163,7 +169,7 @@ function Home() {
             handle="spectresx"
             status="Online"
             contactText="Contact Me"
-            avatarUrl="https://cdn.discordapp.com/attachments/1251949633437958276/1381245587076419654/avatar.jpg?ex=6846d0b2&is=68457f32&hm=8f480be050c67538b08b89e57d7a8bc533b1abfc3be1b76fbc53ab436d04b5ef&"
+            avatarUrl="https://cdn.discordapp.com/attachments/1251949633437958276/1381245587076419654/avatar.jpg"
             showUserInfo={true}
             enableTilt={true}
             onContactClick={() => console.log("Contact clicked")}
@@ -175,49 +181,38 @@ function Home() {
             handle="00enes"
             status="Online"
             contactText="Contact Me"
-            avatarUrl="https://cdn.discordapp.com/attachments/1251949633437958276/1381246661602312326/Schermafbeelding_2025-06-08_141918-removebg-preview.png?ex=6846d1b2&is=68458032&hm=8bb3a0a98547784681228008c5787409c9f008740941ffaeedda9300d5211752&"
+            avatarUrl="https://cdn.discordapp.com/attachments/1251949633437958276/1381246661602312326/Schermafbeelding_2025-06-08_141918-removebg-preview.png"
             showUserInfo={true}
             enableTilt={true}
             onContactClick={() => console.log("Contact clicked")}
           />
         </div>
-      </div>
 
-      {/* Dock */}
-      <div className="dock">
-        <Dock items={dockItems} panelHeight={68} baseItemSize={50} magnification={70} />
+        {/* Dock */}
+        <div className="dock">
+          <Dock items={dockItems} panelHeight={68} baseItemSize={50} magnification={70} />
+        </div>
       </div>
     </>
   );
-}
-
-function SideLink({ icon, label, href }) {
-  return (
-    <a href={href} target="_blank" rel="noopener noreferrer">
-      {icon} {label}
-    </a>
-  );
-}
-
-function Layout({ children }) {
-  // Simple wrapper without background, just content container for other pages
-  return <div className="page-content">{children}</div>;
 }
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/home" element={<Layout><Home /></Layout>} />
-        <Route path="/404" element={<Layout><NotFound /></Layout>} />
+        {/* Redirect root to /home once */}
         <Route path="/" element={<Navigate to="/home" replace />} />
-        {/* Replace this: */}
-        {/* <Route path="*" element={<Navigate to="/404" replace />} /> */}
-        
-        {/* WITH THIS: */}
-        <Route path="*" element={<Layout><NotFound /></Layout>} />
-    </Routes>
 
+        {/* Home route with everything inside */}
+        <Route path="/home" element={<Home />} />
+
+        {/* 404 route */}
+        <Route path="/404" element={<NotFound />} />
+
+        {/* Catch all unmatched routes render NotFound directly */}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </BrowserRouter>
   );
 }
