@@ -12,7 +12,7 @@ import Iridescence from "./blocks/Backgrounds/Iridescence/Iridescence.jsx";
 import { VscHome, VscArchive, VscAccount, VscSettingsGear } from "react-icons/vsc";
 import { FaGithub, FaDiscord, FaLinkedin, FaGlobe } from "react-icons/fa";
 
-import "./Home.css"; // Your styles for Home
+import "./App.css"; // Your styles for Home
 
 function SideLink({ icon, label, href }) {
   return (
